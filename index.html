@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
         height: 100%;
@@ -21,7 +16,7 @@
 
     body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #475569 100%);
+        background: radial-gradient(circle at top, #ffffff 0%, #f3f4f6 45%, #e5e7eb 100%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,108 +24,94 @@
         position: relative;
     }
 
+    /* subtle top red strip like site header */
     body::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: 
-            radial-gradient(ellipse 60% 40% at 20% 30%, rgba(148, 163, 184, 0.15) 0%, transparent 50%),
-            radial-gradient(ellipse 30% 20% at 80% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-            radial-gradient(ellipse 20% 15% at 40% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
-        pointer-events: none;
-    }
-
-    .ad-container {
-        width: 100%;
-        max-width: 520px;
-        max-height: 90vh;
-        height: 650px;
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
-        border-radius: 32px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 40px 32px;
-        text-align: center;
-        box-shadow: 
-            0 25px 50px -12px rgba(0, 0, 0, 0.25),
-            0 0 0 1px rgba(255, 255, 255, 0.05),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .ad-container::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, 
-            rgba(239, 68, 68, 0.8), 
-            rgba(245, 158, 11, 0.8), 
-            rgba(16, 185, 129, 0.8),
-            rgba(59, 130, 246, 0.8),
-            rgba(139, 92, 246, 0.8));
-        border-radius: 32px 32px 0 0;
+        height: 8px;
+        background: #ef233c; /* RK red */
     }
 
+   .ad-container {
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    height: 650px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 32px;
+    border: 1px solid #e5e7eb;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.15),
+        0 0 0 1px rgba(255,255,255,0.9);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* top accent only */
+.ad-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px; /* thickness of strip */
+    background: linear-gradient(
+        90deg,
+        #ff0e0e,
+        #ff4d4d,
+        #db1818,
+        #ff4d4d,
+        #fd0e0e
+    );
+    border-radius: 32px 32px 0 0;
+    pointer-events: none;
+}
+
+
     @keyframes slideUp {
-        from { opacity: 0; transform: translateY(40px) scale(0.95); }
+        from { opacity: 0; transform: translateY(40px) scale(0.96); }
         to   { opacity: 1; transform: translateY(0)   scale(1); }
     }
 
-    .header-section {
-        flex-shrink: 0;
-        margin-bottom: 28px;
-    }
+    .header-section { flex-shrink: 0; margin-bottom: 28px; }
 
     .badge {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        background: rgba(239, 68, 68, 0.2);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        color: #fefefe;
-        padding: 12px 24px;
-        border-radius: 50px;
-        font-size: 14px;
+        background: linear-gradient(135deg, #ff0000, #f30404);
+        color: #ffffff;
+        padding: 10px 26px;
+        border-radius: 999px;
+        font-size: 13px;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .badge:hover {
-        background: rgba(239, 68, 68, 0.3);
-        transform: translateY(-1px);
+        letter-spacing: 0.6px;
+        margin-bottom: 18px;
+        box-shadow: 0 10px 25px rgba(239,35,60,0.35);
     }
 
     .ad-title {
-        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        font-size: clamp(1.9rem, 4vw, 2.5rem);
         font-weight: 700;
-        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #111827;
         line-height: 1.2;
-        margin-bottom: 12px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 8px;
     }
 
     .subtitle {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 1.1rem;
+        color: #6b7280;
+        font-size: 1rem;
         font-weight: 400;
-        backdrop-filter: blur(10px);
     }
 
     .image-section {
@@ -146,176 +127,145 @@
     #couponImage {
         max-width: 100%;
         max-height: 100%;
-        width: auto;
-        height: auto;
         object-fit: contain;
-        object-position: center;
         border-radius: 24px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 
-            0 20px 40px rgba(0,0,0,0.2),
-            0 8px 20px rgba(0,0,0,0.1);
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        box-shadow:
+            0 18px 36px rgba(0,0,0,0.12);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     #couponImage:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 
-            0 32px 64px rgba(0,0,0,0.3),
-            0 12px 28px rgba(0,0,0,0.15);
+        transform: translateY(-6px);
+        box-shadow: 0 26px 52px rgba(0,0,0,0.18);
     }
 
     .footer-section {
         flex-shrink: 0;
         margin-top: auto;
-        padding-top: 24px;
+        padding-top: 20px;
     }
 
     .timer-container {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 16px;
-        padding: 20px 28px;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(30px);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: rgba(255, 255, 255, 0.95);
+        gap: 14px;
+        padding: 18px 24px;
+        background: rgb(255, 255, 255);
+        border-radius: 18px;
+        border: 1px solid #ebe5e5;
+        color: #111827;
         font-weight: 600;
-        font-size: 1rem;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-        margin-bottom: 16px;
+        font-size: 0.96rem;
+        box-shadow: 0 10px 25px rgba(15,23,42,0.08);
     }
 
     .timer-icon {
-        font-size: 1.4rem;
-        width: 44px;
-        height: 44px;
-        background: rgba(99, 102, 241, 0.3);
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(20px);
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50%      { transform: scale(1.05); }
+        font-size: 1.3rem;
     }
 
     .progress-bar {
         width: 100%;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border-radius: 3px;
+        height: 5px;
+        background: #f3f4f6;
+        border-radius: 999px;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid #e5e7eb;
+        margin-top: 14px;
     }
 
     .progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, #10b981, #34d399, #059669);
+        background: linear-gradient(90deg, #ef233c, #ffb703);
         width: 0%;
         transition: width 0.1s linear;
-        border-radius: 3px;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
     }
 
-    /* MODAL STYLES - Apple Glass Design */
+    /* Modal */
     .modal-overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(8px);
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(10px);
         display: none;
         justify-content: center;
         align-items: center;
         z-index: 10000;
-        animation: fadeIn 0.3s ease;
+        animation: fadeIn 0.25s ease;
     }
 
     .modal-container {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(40px) saturate(180%);
+        background: rgba(255,255,255,0.96);
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 32px;
+        border: 1px solid #e5e7eb;
+        padding: 28px 26px;
         max-width: 420px;
         width: 90%;
         text-align: center;
-        box-shadow: 
-            0 25px 50px -12px rgba(0, 0, 0, 0.3),
-            0 0 0 1px rgba(255, 255, 255, 0.05);
-        animation: slideUpModal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 22px 50px rgba(0,0,0,0.22);
+        animation: slideUpModal 0.3s cubic-bezier(0.34,1.56,0.64,1);
     }
 
     .modal-title {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 22px;
+        color: #111827;
+        font-size: 20px;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
 
-    /* image preview inside modal */
     #previewImage {
         max-width: 100%;
         border-radius: 16px;
-        margin: 16px 0 20px;
-        box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+        margin: 14px 0 18px;
+        box-shadow: 0 16px 34px rgba(0,0,0,0.35);
     }
 
     .modal-description {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 16px;
-        margin-bottom: 24px;
-        line-height: 1.5;
+        color: #4b5563;
+        font-size: 15px;
+        margin-bottom: 22px;
     }
 
     .modal-buttons {
         display: flex;
-        gap: 12px;
+        gap: 10px;
         justify-content: center;
     }
 
     .modal-btn {
-        padding: 14px 28px;
+        padding: 12px 20px;
         border: none;
-        border-radius: 12px;
-        font-size: 16px;
+        border-radius: 999px;
+        font-size: 15px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         flex: 1;
         max-width: 140px;
     }
 
     .btn-yes {
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        background: #ff0000;
+        color: #ffffff;
+        box-shadow: 0 10px 22px rgba(239,35,60,0.4);
     }
 
     .btn-yes:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
+        background: #eb0707;
+        transform: translateY(-1px);
     }
 
     .btn-no {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        color: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: #f3f4f6;
+        color: #111827;
+        border: 1px solid #e5e7eb;
     }
 
     .btn-no:hover {
-        background: rgba(255, 255, 255, 0.25);
-        transform: translateY(-2px);
+        background: #e5e7eb;
+        transform: translateY(-1px);
     }
 
     @keyframes fadeIn {
@@ -324,15 +274,15 @@
     }
 
     @keyframes slideUpModal {
-        from { opacity: 0; transform: translateY(30px) scale(0.95); }
+        from { opacity: 0; transform: translateY(24px) scale(0.97); }
         to   { opacity: 1; transform: translateY(0)   scale(1); }
     }
 
     @media (max-width: 480px) {
-        body { padding: 12px; }
-        .ad-container { height: 600px; padding: 32px 24px; border-radius: 28px; }
-        .badge { padding: 10px 20px; font-size: 13px; }
-        .modal-container { padding: 24px; }
+        body { padding: 10px; }
+        .ad-container { height: 600px; padding: 32px 22px; border-radius: 26px; }
+        .badge { padding: 8px 20px; font-size: 12px; }
+        .modal-container { padding: 24px 20px; }
     }
 </style>
 </head>
@@ -340,9 +290,9 @@
 
 <div class="ad-container">
     <div class="header-section">
-        <div class="badge">🔥 LIMITED TIME OFFER</div>
+        <div class="badge">🔥 Limited Time Offer</div>
         <h1 class="ad-title">Exclusive Deals Await!</h1>
-        <p class="subtitle">Don't miss out on these amazing savings</p>
+        <p class="subtitle">Don’t miss out on these amazing savings</p>
     </div>
 
     <div class="image-section">
@@ -361,13 +311,12 @@
     </div>
 </div>
 
-<!-- MODAL: preview + confirm download -->
 <div class="modal-overlay" id="couponModal">
     <div class="modal-container">
         <div class="modal-title">Save this offer?</div>
         <img id="previewImage" src="" alt="Offer preview">
         <div class="modal-description">
-            Do you want to save this offer image locally to avail it later?
+            Do you want to save this offer image locally so you can redeem it later?
         </div>
         <div class="modal-buttons">
             <button class="modal-btn btn-no" id="noBtn">Cancel</button>
@@ -377,7 +326,6 @@
 </div>
 
 <script>
-    // In production this will be generated from PHP (glob/scandir on uploads/ads)
     let ads = [
         { image: "uploads/ads/ad1.jpg" },
         { image: "uploads/ads/ad2.jpg" },
@@ -386,15 +334,15 @@
     ];
 
     let index = 0;
-    const display       = document.getElementById("couponImage");
-    const countdownEl   = document.getElementById("countdown");
-    const progressFill  = document.getElementById("progressFill");
-    const modal         = document.getElementById("couponModal");
-    const previewImage  = document.getElementById("previewImage");
-    const yesBtn        = document.getElementById("yesBtn");
-    const noBtn         = document.getElementById("noBtn");
+    const display      = document.getElementById("couponImage");
+    const countdownEl  = document.getElementById("countdown");
+    const progressFill = document.getElementById("progressFill");
+    const modal        = document.getElementById("couponModal");
+    const previewImage = document.getElementById("previewImage");
+    const yesBtn       = document.getElementById("yesBtn");
+    const noBtn        = document.getElementById("noBtn");
 
-    const INTERVAL = 5000; // 5s demo – change to 300000 for 5 min
+    const INTERVAL = 300000; // change to 300000 for 5 minutes
 
     function showAd() {
         display.src = ads[index].image;
@@ -407,7 +355,8 @@
         const timer = setInterval(() => {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-            countdownEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            countdownEl.textContent =
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
             const progress = ((INTERVAL - timeLeft * 1000) / INTERVAL) * 100;
             progressFill.style.width = `${progress}%`;
@@ -420,35 +369,29 @@
         }, 1000);
     }
 
-    // Open modal with preview of currently shown image
     display.addEventListener('click', () => {
         const currentAd = ads[(index + ads.length - 1) % ads.length];
         previewImage.src = currentAd.image;
         modal.style.display = 'flex';
     });
 
-    // Download clicked image
     yesBtn.addEventListener('click', () => {
         const currentAd = ads[(index + ads.length - 1) % ads.length];
         downloadImage(currentAd.image);
         modal.style.display = 'none';
     });
 
-    // Close modal
     noBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
-    // Close when clicking outside modal box
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
+    modal.addEventListener('click', e => {
+        if (e.target === modal) modal.style.display = 'none';
     });
 
     function downloadImage(imageUrl) {
         fetch(imageUrl)
-            .then(response => response.blob())
+            .then(res => res.blob())
             .then(blob => {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -470,4 +413,3 @@
 
 </body>
 </html>
-

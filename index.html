@@ -300,10 +300,25 @@
     </div>
     
     <div class="footer-section">
-        <div class="timer-container">
-            <span class="timer-icon">⏳</span>
-            <span>Next offer in <span id="countdown">5:00</span></span>
+        <div class="timer-container" style="
+    background: #ff0000;
+    color: #ffffff;
+    border: none;
+   
+    
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+">
+            <span class="timer-icon"></span>
+            <!-- <span>Next offer in <span id="countdown">5:00</span></span> -->
+             <span id="ctaText">CLAIM THIS OFFER NOW!</span>
+             
         </div>
+
+
+        
         
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
@@ -335,45 +350,50 @@
 
     let index = 0;
     const display      = document.getElementById("couponImage");
-    const countdownEl  = document.getElementById("countdown");
     const progressFill = document.getElementById("progressFill");
     const modal        = document.getElementById("couponModal");
     const previewImage = document.getElementById("previewImage");
     const yesBtn       = document.getElementById("yesBtn");
     const noBtn        = document.getElementById("noBtn");
+    const ctaText      = document.getElementById("ctaText");
 
-    const INTERVAL = 300000; // change to 300000 for 5 minutes
+    const INTERVAL = 300000; // 5 minutes
 
     function showAd() {
         display.src = ads[index].image;
         index = (index + 1) % ads.length;
-        startCountdown();
+        startProgress();
     }
 
-    function startCountdown() {
-        let timeLeft = INTERVAL / 1000;
-        const timer = setInterval(() => {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            countdownEl.textContent =
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    // only keep a progress bar, no text countdown
+    function startProgress() {
+        let elapsed = 0;
+        const step = 1000;
+        progressFill.style.width = '0%';
 
-            const progress = ((INTERVAL - timeLeft * 1000) / INTERVAL) * 100;
+        const timer = setInterval(() => {
+            elapsed += step;
+            const progress = Math.min(100, (elapsed / INTERVAL) * 100);
             progressFill.style.width = `${progress}%`;
 
-            timeLeft--;
-            if (timeLeft < 0) {
+            if (elapsed >= INTERVAL) {
                 clearInterval(timer);
                 showAd();
             }
-        }, 1000);
+        }, step);
     }
 
-    display.addEventListener('click', () => {
+    function openModalForCurrentAd() {
         const currentAd = ads[(index + ads.length - 1) % ads.length];
         previewImage.src = currentAd.image;
         modal.style.display = 'flex';
-    });
+    }
+
+    // Click on image → open modal
+    display.addEventListener('click', openModalForCurrentAd);
+
+    // Click on "Click the offer to avail it" text → same behavior
+    ctaText.addEventListener('click', openModalForCurrentAd);
 
     yesBtn.addEventListener('click', () => {
         const currentAd = ads[(index + ads.length - 1) % ads.length];

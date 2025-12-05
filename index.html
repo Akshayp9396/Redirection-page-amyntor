@@ -24,7 +24,7 @@
         position: relative;
     }
 
-    /* subtle top red strip like site header */
+
     body::before {
         content: '';
         position: absolute;
@@ -32,7 +32,7 @@
         left: 0;
         right: 0;
         height: 8px;
-        background: #ef233c; /* RK red */
+        background: #ef233c; 
     }
 
    .ad-container {
@@ -55,14 +55,14 @@
     animation: slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* top accent only */
+
 .ad-container::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px; /* thickness of strip */
+    height: 4px; 
     background: linear-gradient(
         90deg,
         #ff0e0e,
@@ -183,7 +183,7 @@
         transition: width 0.1s linear;
     }
 
-    /* Modal */
+
     .modal-overlay {
         position: fixed;
         inset: 0;
@@ -300,22 +300,27 @@
     </div>
     
     <div class="footer-section">
-        <div class="timer-container" style="
-    background: #ff0000;
-    color: #ffffff;
-    border: none;
-   
-    
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-">
+        <button class="timer-container" id="ctaText" type="button" style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 14px;
+                                width: 100%;
+                                padding: 18px 24px;
+                                background: #ff0000;
+                                color: #ffffff;
+                                border: none;
+                                border-radius: 18px;
+                                font-size: 0.9rem;
+                                font-weight: 600;
+                                cursor: pointer;
+                                white-space: nowrap;" >
+
             <span class="timer-icon"></span>
             <!-- <span>Next offer in <span id="countdown">5:00</span></span> -->
              <span id="ctaText">CLAIM THIS OFFER NOW!</span>
              
-        </div>
+        </button>
 
 
         
@@ -365,7 +370,7 @@
         startProgress();
     }
 
-    // only keep a progress bar, no text countdown
+    // progress bar
     function startProgress() {
         let elapsed = 0;
         const step = 1000;
@@ -389,10 +394,8 @@
         modal.style.display = 'flex';
     }
 
-    // Click on image → open modal
+    // Click on image and button 
     display.addEventListener('click', openModalForCurrentAd);
-
-    // Click on "Click the offer to avail it" text → same behavior
     ctaText.addEventListener('click', openModalForCurrentAd);
 
     yesBtn.addEventListener('click', () => {

@@ -149,6 +149,7 @@
         overflow: hidden;
         border: 1px solid #e5e7eb;
         margin-top: 10px;
+        display: none;
     }
 
     .progress-fill {
@@ -336,30 +337,30 @@
     const noBtn        = document.getElementById("noBtn");
     // const ctaButton    = document.getElementById("ctaButton");
 
-    const INTERVAL = 60000; // 5 minutes
+    const INTERVAL = 25000; // 25 seconds
 
     function showAd() {
         display.src = ads[index].image;
         index = (index + 1) % ads.length;
-        startProgress();
+        // startProgress();
     }
 
-    function startProgress() {
-        let elapsed = 0;
-        const step = 1000;
-        progressFill.style.width = "0%";
+    // function startProgress() {
+    //     let elapsed = 0;
+    //     const step = 1000;
+    //     progressFill.style.width = "0%";
 
-        const timer = setInterval(() => {
-            elapsed += step;
-            const progress = Math.min(100, (elapsed / INTERVAL) * 100);
-            progressFill.style.width = `${progress}%`;
+    //     const timer = setInterval(() => {
+    //         elapsed += step;
+    //         const progress = Math.min(100, (elapsed / INTERVAL) * 100);
+    //         progressFill.style.width = `${progress}%`;
 
-            if (elapsed >= INTERVAL) {
-                clearInterval(timer);
-                showAd();
-            }
-        }, step);
-    }
+    //         if (elapsed >= INTERVAL) {
+    //             clearInterval(timer);
+    //             showAd();
+    //         }
+    //     }, step);
+    // }
 
     function openModalForCurrentAd() {
         const currentAd = ads[(index + ads.length - 1) % ads.length];
@@ -405,6 +406,8 @@
 
     // init
     showAd();
+    setInterval(showAd, INTERVAL);
+
 </script>
 
 </body>

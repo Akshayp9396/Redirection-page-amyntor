@@ -20,150 +20,125 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 80px 20px 20px;
         position: relative;
     }
 
+    body::before { content: none; }
 
-    body::before {
+    .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #EE2024;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .top-logo {
+        height: 44px;
+        width: auto;
+    }
+
+    .ad-container {
+        width: 100%;
+        max-width: 520px;
+        max-height: 90vh;
+        height: 650px;
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 32px;
+        border: 1px solid #e5e7eb;
+        padding: 24px 28px 28px;
+        text-align: center;
+        box-shadow:
+            0 30px 60px rgba(0,0,0,0.15),
+            0 0 0 1px rgba(255,255,255,0.9);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        animation: slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .ad-container::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 8px;
-        background: #ef233c; 
+        height: 4px;
+        background: linear-gradient(
+            90deg,
+            #ff0e0e,
+            #ff4d4d,
+            #db1818,
+            #ff4d4d,
+            #fd0e0e
+        );
+        border-radius: 32px 32px 0 0;
+        pointer-events: none;
     }
-
-   .ad-container {
-    width: 100%;
-    max-width: 520px;
-    max-height: 90vh;
-    height: 650px;
-    background: rgba(255, 255, 255, 0.96);
-    border-radius: 32px;
-    border: 1px solid #e5e7eb;
-    padding: 40px 32px;
-    text-align: center;
-    box-shadow:
-        0 30px 60px rgba(0,0,0,0.15),
-        0 0 0 1px rgba(255,255,255,0.9);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    animation: slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-
-.ad-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px; 
-    background: linear-gradient(
-        90deg,
-        #ff0e0e,
-        #ff4d4d,
-        #db1818,
-        #ff4d4d,
-        #fd0e0e
-    );
-    border-radius: 32px 32px 0 0;
-    pointer-events: none;
-}
-
 
     @keyframes slideUp {
         from { opacity: 0; transform: translateY(40px) scale(0.96); }
         to   { opacity: 1; transform: translateY(0)   scale(1); }
     }
 
-    .header-section { flex-shrink: 0; margin-bottom: 28px; }
-
-    .badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: linear-gradient(135deg, #ff0000, #f30404);
-        color: #ffffff;
-        padding: 10px 26px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        margin-bottom: 18px;
-        box-shadow: 0 10px 25px rgba(239,35,60,0.35);
-    }
-
-    .ad-title {
-        font-size: clamp(1.9rem, 4vw, 2.5rem);
-        font-weight: 700;
-        color: #111827;
-        line-height: 1.2;
-        margin-bottom: 8px;
-    }
-
-    .subtitle {
-        color: #6b7280;
-        font-size: 1rem;
-        font-weight: 400;
-    }
-
     .image-section {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        position: relative;
-        cursor: pointer;
-    }
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;          /* center vertically in fixed area */
+    justify-content: center;
+    padding: 8px 8px 6px;
+    cursor: pointer;
+    height: 260px;                /* fixed height area for coupon */
+}
 
-    #couponImage {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        border-radius: 24px;
-        background: #f9fafb;
-        border: 1px solid #e5e7eb;
-        box-shadow:
-            0 18px 36px rgba(0,0,0,0.12);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+#couponImage {
+    width: 100%;
+    height: 100%;                 /* fill the fixed area */
+    object-fit: contain;          /* keep aspect ratio, no stretch */
+    border-radius: 24px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
     #couponImage:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 26px 52px rgba(0,0,0,0.18);
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px rgba(0,0,0,0.18);
     }
 
     .footer-section {
         flex-shrink: 0;
-        margin-top: auto;
-        padding-top: 20px;
+        margin-top: 10px;
     }
 
-    .timer-container {
+    .claim-button {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 14px;
-        padding: 18px 24px;
-        background: rgb(255, 255, 255);
+        gap: 10px;
+        width: 100%;
+        padding: 14px 20px;
+        background: #ff0000;
+        color: #ffffff;
+        border: none;
         border-radius: 18px;
-        border: 1px solid #ebe5e5;
-        color: #111827;
+        font-size: 0.9rem;
         font-weight: 600;
-        font-size: 0.96rem;
+        cursor: pointer;
+        white-space: nowrap;
         box-shadow: 0 10px 25px rgba(15,23,42,0.08);
     }
 
     .timer-icon {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .progress-bar {
@@ -173,7 +148,7 @@
         border-radius: 999px;
         overflow: hidden;
         border: 1px solid #e5e7eb;
-        margin-top: 14px;
+        margin-top: 10px;
     }
 
     .progress-fill {
@@ -183,6 +158,21 @@
         transition: width 0.1s linear;
     }
 
+    .static-ads {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.static-ad {
+    width: 100%;
+    height: 130px;                /* fixed height for ad slots */
+    object-fit: cover;            /* fill nicely, crop if needed */
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
 
     .modal-overlay {
         position: fixed;
@@ -247,13 +237,13 @@
     }
 
     .btn-yes {
-        background: #ff0000;
+        background: #EE2024;
         color: #ffffff;
         box-shadow: 0 10px 22px rgba(239,35,60,0.4);
     }
 
     .btn-yes:hover {
-        background: #eb0707;
+        background: #EE2024;
         transform: translateY(-1px);
     }
 
@@ -279,54 +269,36 @@
     }
 
     @media (max-width: 480px) {
-        body { padding: 10px; }
-        .ad-container { height: 600px; padding: 32px 22px; border-radius: 26px; }
-        .badge { padding: 8px 20px; font-size: 12px; }
+        body { padding: 80px 10px 10px; }
+        .ad-container { height: 600px; padding: 24px 18px 24px; border-radius: 26px; }
         .modal-container { padding: 24px 20px; }
     }
 </style>
 </head>
 <body>
 
-<div class="ad-container">
-    <div class="header-section">
-        <div class="badge">🔥 Limited Time Offer</div>
-        <h1 class="ad-title">Exclusive Deals Await!</h1>
-        <p class="subtitle">Don’t miss out on these amazing savings</p>
-    </div>
+<div class="top-bar">
+    <img src="uploads/logo/rk-wedding-mall-logo.png" alt="RK Wedding Mall Logo" class="top-logo">
+</div>
 
+<div class="ad-container">
     <div class="image-section">
         <img id="couponImage" src="" alt="Special Offer">
     </div>
     
     <div class="footer-section">
-        <button class="timer-container" id="ctaText" type="button" style="
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 14px;
-                                width: 100%;
-                                padding: 18px 24px;
-                                background: #ff0000;
-                                color: #ffffff;
-                                border: none;
-                                border-radius: 18px;
-                                font-size: 0.9rem;
-                                font-weight: 600;
-                                cursor: pointer;
-                                white-space: nowrap;" >
+        <!-- <button class="claim-button" id="ctaButton" type="button">
+            <span class="timer-icon">⏱</span>
+            <span>CLAIM THIS OFFER NOW!</span>
+        </button> -->
 
-            <span class="timer-icon"></span>
-            <!-- <span>Next offer in <span id="countdown">5:00</span></span> -->
-             <span id="ctaText">CLAIM THIS OFFER NOW!</span>
-             
-        </button>
-
-
-        
-        
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="static-ads">
+            <img src="uploads/ads/ad1.jpg" alt="Ad 1" class="static-ad">
+            <img src="uploads/ads/ad2.jpg" alt="Ad 2" class="static-ad">
         </div>
     </div>
 </div>
@@ -346,21 +318,23 @@
 </div>
 
 <script>
-    let ads = [
-        { image: "uploads/ads/ad1.jpg" },
-        { image: "uploads/ads/ad2.jpg" },
-        { image: "uploads/ads/ad3.jpg" },
-        { image: "uploads/ads/ad4.jpg" }
+    // Main coupon images (dynamic, rotate every 5 min)
+    const ads = [
+        { image: "uploads/coupens/coup1.jpg" },
+        { image: "uploads/coupens/coup2.jpg" },
+        { image: "uploads/coupens/coup3.jpg" },
+        { image: "uploads/coupens/coup4.jpg" }
     ];
 
     let index = 0;
+
     const display      = document.getElementById("couponImage");
     const progressFill = document.getElementById("progressFill");
     const modal        = document.getElementById("couponModal");
     const previewImage = document.getElementById("previewImage");
     const yesBtn       = document.getElementById("yesBtn");
     const noBtn        = document.getElementById("noBtn");
-    const ctaText      = document.getElementById("ctaText");
+    // const ctaButton    = document.getElementById("ctaButton");
 
     const INTERVAL = 300000; // 5 minutes
 
@@ -370,11 +344,10 @@
         startProgress();
     }
 
-    // progress bar
     function startProgress() {
         let elapsed = 0;
         const step = 1000;
-        progressFill.style.width = '0%';
+        progressFill.style.width = "0%";
 
         const timer = setInterval(() => {
             elapsed += step;
@@ -391,25 +364,24 @@
     function openModalForCurrentAd() {
         const currentAd = ads[(index + ads.length - 1) % ads.length];
         previewImage.src = currentAd.image;
-        modal.style.display = 'flex';
+        modal.style.display = "flex";
     }
 
-    // Click on image and button 
-    display.addEventListener('click', openModalForCurrentAd);
-    ctaText.addEventListener('click', openModalForCurrentAd);
+    display.addEventListener("click", openModalForCurrentAd);
+    // ctaButton.addEventListener("click", openModalForCurrentAd);
 
-    yesBtn.addEventListener('click', () => {
+    yesBtn.addEventListener("click", () => {
         const currentAd = ads[(index + ads.length - 1) % ads.length];
         downloadImage(currentAd.image);
-        modal.style.display = 'none';
+        modal.style.display = "none";
     });
 
-    noBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+    noBtn.addEventListener("click", () => {
+        modal.style.display = "none";
     });
 
-    modal.addEventListener('click', e => {
-        if (e.target === modal) modal.style.display = 'none';
+    modal.addEventListener("click", e => {
+        if (e.target === modal) modal.style.display = "none";
     });
 
     function downloadImage(imageUrl) {
@@ -417,20 +389,21 @@
             .then(res => res.blob())
             .then(blob => {
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
+                const a = document.createElement("a");
                 a.href = url;
-                a.download = 'offer.jpg';
+                a.download = "offer.jpg";
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
             })
             .catch(err => {
-                console.error('Download failed', err);
-                window.open(imageUrl, '_blank');
+                console.error("Download failed", err);
+                window.open(imageUrl, "_blank");
             });
     }
 
+    // init
     showAd();
 </script>
 
